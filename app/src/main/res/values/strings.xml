@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CustomViewGroups</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="balish_text">&quot;When you play the game of thrones, you win or you die.&quot;\n– Cersei Lannister</string>
+    <string name="jim_text">&quot;Yes! I'm so glad they got rid of him!&quot;\n- Jim Baca</string>
+</resources>
