@@ -1,7 +1,6 @@
 package com.jimbaca.example.customviewgroup;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,15 +26,16 @@ public class ProfileLayout extends ViewGroup{
         super(context, attrs, defStyle);
     }
 
-    @Override
+    /*@Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         setMeasuredDimension(width, height);
-    }
+    }*/
 
     @Override
     protected void onLayout(boolean sizeChanged, int left, int top, int right, int bottom) {
     }
 
+    /*
     @Override // Checks if the exiting layout params for a View are correct for ProfileLayout
     protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
         return p instanceof LayoutParams;
@@ -62,5 +62,5 @@ public class ProfileLayout extends ViewGroup{
 
     public static class LayoutParams extends ViewGroup.LayoutParams{
 
-    }
+    }*/
 }

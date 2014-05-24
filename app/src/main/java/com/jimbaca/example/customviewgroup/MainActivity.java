@@ -5,7 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.android.debug.hv.ViewServer;
+//import com.android.debug.hv.ViewServer;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -14,19 +14,19 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.starter_layout);
-        ViewServer.get(this).addWindow(this);
+        //ViewServer.get(this).addWindow(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        ViewServer.get(this).setFocusedWindow(this);
+        //ViewServer.get(this).setFocusedWindow(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ViewServer.get(this).removeWindow(this);
+        //ViewServer.get(this).removeWindow(this);
     }
 
     @Override
