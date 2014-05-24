@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile"
+            android:layout_gravity="center"
+
+            />
+        <ImageView
+            android:layout_width="230dp"
+            android:layout_height="280dp"
+            android:background="@drawable/frame"
+            />
+        </FrameLayout>
+
+    <TextView
+        android:layout_below="@+id/frame"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/banner"
+        android:text="Jim Baca"
+        android:gravity="center"
+        android:textColor="@color/blue"
+        android:layout_marginTop="-64dp"
+        />
+
+    <TextView
+        android:layout_below="@+id/frame"
+        android:layout_alignLeft="@+id/frame"
+        android:layout_alignRight="@+id/frame"
+        android:paddingTop="50dp"
+        android:paddingBottom="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tag_holder"
+        android:text="@string/jim_text"
+        android:gravity="center"
+        android:textColor="@color/blue"
+        />
+    <ImageView
+        android:layout_alignLeft="@id/frame"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/crown"
+        />
+    <ImageView
+        android:layout_alignRight="@id/frame"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dragon"
+        />
+</RelativeLayout>
