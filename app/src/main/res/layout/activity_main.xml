@@ -1,8 +1,60 @@
 <com.jimbaca.example.customviewgroup.ProfileLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:profile="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     tools:context="com.jimbaca.example.customviewgroup.MainActivity">
+    <View
+        android:layout_width="23dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chains"
+        />
+
+    <View
+        android:layout_width="23dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chains"
+        />
+
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/profile"/>
+
+    <ImageView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@drawable/frame"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/crown"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dragon"
+       />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/banner"
+        android:text="Jim Baca"
+        android:textColor="@color/blue"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tag_holder"
+        android:text="@string/jim_text"
+        android:gravity="center"
+        android:textColor="@color/blue"
+        />
+
+
 </com.jimbaca.example.customviewgroup.ProfileLayout>
