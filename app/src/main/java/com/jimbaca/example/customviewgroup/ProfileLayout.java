@@ -58,9 +58,11 @@ public class ProfileLayout extends ViewGroup{
     protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
 
         return new LayoutParams(p.width, p.height);
-    }
+    }*/
 
     public static class LayoutParams extends ViewGroup.LayoutParams{
-
-    }*/
+        public LayoutParams(Context c, AttributeSet attrs) {
+            super(c, attrs);
+        }
+    }
 }
