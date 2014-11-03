@@ -1,5 +1,6 @@
 <resources>
-    <declare-styleable name="ProfileLayout_LayoutParams">
 
+    <declare-styleable name="ProfileLayout_LayoutParams">
+        <attr name="layout_picture" format="boolean"/>
     </declare-styleable>
 </resources>
