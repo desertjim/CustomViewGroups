@@ -1,6 +1,7 @@
 package com.jimbaca.example.customviewgroup;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,8 +62,16 @@ public class ProfileLayout extends ViewGroup{
     }*/
 
     public static class LayoutParams extends ViewGroup.LayoutParams{
+
+        public boolean isLayoutPicture = false;
+
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
+            TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.ProfileLayout_LayoutParams);
+
+            isLayoutPicture = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_picture, false);
+
+            a.recycle();
         }
     }
 }
