@@ -4,17 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     tools:context="com.jimbaca.example.customviewgroup.MainActivity">
-    <View
-        android:layout_width="23dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/chains"
-        />
 
-    <View
-        android:layout_width="23dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/chains"
-        />
 
     <ImageView
         android:layout_height="wrap_content"
@@ -56,5 +46,16 @@
         android:textColor="@color/blue"
         />
 
+    <View
+        android:layout_width="23dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chains"
+        />
+
+    <View
+        android:layout_width="23dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chains"
+        />
 
 </com.jimbaca.example.customviewgroup.ProfileLayout>
