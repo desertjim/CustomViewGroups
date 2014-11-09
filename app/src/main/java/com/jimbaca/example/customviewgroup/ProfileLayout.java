@@ -27,10 +27,10 @@ public class ProfileLayout extends ViewGroup{
         super(context, attrs, defStyle);
     }
 
-    /*@Override
+    @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(width, height);
-    }*/
+        
+    }
 
     @Override
     protected void onLayout(boolean sizeChanged, int left, int top, int right, int bottom) {
