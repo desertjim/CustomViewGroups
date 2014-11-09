@@ -29,7 +29,14 @@ public class ProfileLayout extends ViewGroup{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        
+        int childCount = getChildCount();
+        for(int i=0; i < childCount; i++){
+            View childView = getChildAt(i);
+            measureChild(childView, widthMeasureSpec, heightMeasureSpec);
+        }
+
+        // Note this size is being set by what is passed in, not what ProfileLayout is determining what it needs...
+        setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec));
     }
 
     @Override
