@@ -41,6 +41,15 @@ public class ProfileLayout extends ViewGroup{
 
     @Override
     protected void onLayout(boolean sizeChanged, int left, int top, int right, int bottom) {
+        int childCount = getChildCount();
+        int heightTally=0;
+        for(int i=0; i < childCount; i++){
+            View childView = getChildAt(i);
+
+            //Note that at this point you will likely notice something is wrong, what is it?  Hint measureChild doesn't always do what you want
+            childView.layout(0, heightTally, childView.getMeasuredWidth(), heightTally + childView.getMeasuredHeight());
+            heightTally += childView.getMeasuredHeight();
+        }
     }
 
     /*
