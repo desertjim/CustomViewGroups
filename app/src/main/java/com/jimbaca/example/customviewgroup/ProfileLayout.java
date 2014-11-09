@@ -30,9 +30,27 @@ public class ProfileLayout extends ViewGroup{
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int childCount = getChildCount();
+        View pictureView = null;
         for(int i=0; i < childCount; i++){
             View childView = getChildAt(i);
-            measureChild(childView, widthMeasureSpec, heightMeasureSpec);
+            LayoutParams childParams = (LayoutParams)childView.getLayoutParams();
+
+            if(childParams.isLayoutPicture) {
+
+                measureChild(childView, widthMeasureSpec, heightMeasureSpec);
+                pictureView = childView;
+
+            }else if(childParams.isLayoutFrame) {
+
+                int frameWidth = pictureView.getMeasuredWidth();
+                int frameHeight = pictureView.getMeasuredHeight();
+                int measureSpecWidth = MeasureSpec.makeMeasureSpec(frameWidth, MeasureSpec.EXACTLY);
+                int measureSpecHeight = MeasureSpec.makeMeasureSpec(frameHeight, MeasureSpec.EXACTLY);
+                measureChild(childView, measureSpecWidth, measureSpecHeight);
+                
+            }else{
+                measureChild(childView, widthMeasureSpec, heightMeasureSpec);
+            }
         }
 
         // Note this size is being set by what is passed in, not what ProfileLayout is determining what it needs...
@@ -43,6 +61,8 @@ public class ProfileLayout extends ViewGroup{
     protected void onLayout(boolean sizeChanged, int left, int top, int right, int bottom) {
         int childCount = getChildCount();
         int heightTally=0;
+        View pictureView = null;
+
         for(int i=0; i < childCount; i++){
             View childView = getChildAt(i);
             LayoutParams layoutParams = (LayoutParams)childView.getLayoutParams();
@@ -50,6 +70,11 @@ public class ProfileLayout extends ViewGroup{
                 int leftOffset = (getMeasuredWidth() - childView.getMeasuredWidth())/2;
                 childView.layout(leftOffset, heightTally, leftOffset + childView.getMeasuredWidth(), heightTally+childView.getMeasuredHeight());
                 heightTally += childView.getMeasuredHeight();
+
+                pictureView = childView;
+            }else if(layoutParams.isLayoutFrame) {
+                childView.layout(pictureView.getLeft(), pictureView.getTop(), pictureView.getRight(), pictureView.getBottom());
+
             }else {
 
 
@@ -88,12 +113,14 @@ public class ProfileLayout extends ViewGroup{
     public static class LayoutParams extends ViewGroup.LayoutParams{
 
         public boolean isLayoutPicture = false;
+        public boolean isLayoutFrame = false;
 
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
             TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.ProfileLayout_LayoutParams);
 
             isLayoutPicture = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_picture, false);
+            isLayoutFrame = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_frame, false);
 
             a.recycle();
         }
