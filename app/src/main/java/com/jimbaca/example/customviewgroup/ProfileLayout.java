@@ -45,14 +45,22 @@ public class ProfileLayout extends ViewGroup{
         int heightTally=0;
         for(int i=0; i < childCount; i++){
             View childView = getChildAt(i);
+            LayoutParams layoutParams = (LayoutParams)childView.getLayoutParams();
+            if(layoutParams.isLayoutPicture){
+                int leftOffset = (getMeasuredWidth() - childView.getMeasuredWidth())/2;
+                childView.layout(leftOffset, heightTally, leftOffset + childView.getMeasuredWidth(), heightTally+childView.getMeasuredHeight());
+                heightTally += childView.getMeasuredHeight();
+            }else {
 
-            //Note that at this point you will likely notice something is wrong, what is it?  Hint measureChild doesn't always do what you want
-            childView.layout(0, heightTally, childView.getMeasuredWidth(), heightTally + childView.getMeasuredHeight());
-            heightTally += childView.getMeasuredHeight();
+
+                //Note that at this point you will likely notice something is wrong, what is it?  Hint measureChild doesn't always do what you want
+                childView.layout(0, heightTally, childView.getMeasuredWidth(), heightTally + childView.getMeasuredHeight());
+                heightTally += childView.getMeasuredHeight();
+            }
         }
     }
 
-    /*
+
     @Override // Checks if the exiting layout params for a View are correct for ProfileLayout
     protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
         return p instanceof LayoutParams;
@@ -75,7 +83,7 @@ public class ProfileLayout extends ViewGroup{
     protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
 
         return new LayoutParams(p.width, p.height);
-    }*/
+    }
 
     public static class LayoutParams extends ViewGroup.LayoutParams{
 
@@ -89,5 +97,15 @@ public class ProfileLayout extends ViewGroup{
 
             a.recycle();
         }
+
+        // used when creating via code
+        public LayoutParams(ViewGroup.LayoutParams source) {
+            super(source);
+        }
+
+        public LayoutParams(int width, int height) {
+            super(width, height);
+        }
+
     }
 }
