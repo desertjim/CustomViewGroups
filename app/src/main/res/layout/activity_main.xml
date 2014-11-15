@@ -45,7 +45,6 @@
         android:gravity="center"
         android:textColor="@color/blue"
         />
-
     <View
         android:layout_width="23dp"
         android:layout_height="wrap_content"
