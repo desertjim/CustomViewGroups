@@ -114,6 +114,10 @@ public class ProfileLayout extends ViewGroup{
 
         public boolean isLayoutPicture = false;
         public boolean isLayoutFrame = false;
+        public int paddingLeft = 0;
+        public int paddingTop = 0;
+        public int paddingRight = 0;
+        public int paddingBottom = 0;
 
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
@@ -121,6 +125,10 @@ public class ProfileLayout extends ViewGroup{
 
             isLayoutPicture = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_picture, false);
             isLayoutFrame = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_frame, false);
+            paddingLeft = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingLeft, 0);
+            paddingTop = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingTop, 0);
+            paddingRight = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingRight, 0);
+            paddingBottom = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingBottom, 0);
 
             a.recycle();
         }
