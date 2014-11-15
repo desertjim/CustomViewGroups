@@ -30,6 +30,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/crown"
+        profile:framePlacement="top_left"
+        profile:paddingTop="10dp"
+        profile:paddingLeft="5dp"
         />
 
     <ImageView
