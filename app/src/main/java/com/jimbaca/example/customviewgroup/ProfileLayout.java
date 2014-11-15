@@ -42,10 +42,11 @@ public class ProfileLayout extends ViewGroup{
 
             }else if(childParams.isLayoutFrame) {
 
-                int frameWidth = pictureView.getMeasuredWidth();
-                int frameHeight = pictureView.getMeasuredHeight();
+                int frameWidth = pictureView.getMeasuredWidth() + childParams.paddingLeft + childParams.paddingRight;
+                int frameHeight = pictureView.getMeasuredHeight() + childParams.paddingTop + childParams.paddingBottom;
                 int measureSpecWidth = MeasureSpec.makeMeasureSpec(frameWidth, MeasureSpec.EXACTLY);
                 int measureSpecHeight = MeasureSpec.makeMeasureSpec(frameHeight, MeasureSpec.EXACTLY);
+
                 measureChild(childView, measureSpecWidth, measureSpecHeight);
                 
             }else{
@@ -62,18 +63,28 @@ public class ProfileLayout extends ViewGroup{
         int childCount = getChildCount();
         int heightTally=0;
         View pictureView = null;
+        View frameView = null;
+        LayoutParams frameViewParams = null;
 
         for(int i=0; i < childCount; i++){
             View childView = getChildAt(i);
             LayoutParams layoutParams = (LayoutParams)childView.getLayoutParams();
             if(layoutParams.isLayoutPicture){
                 int leftOffset = (getMeasuredWidth() - childView.getMeasuredWidth())/2;
-                childView.layout(leftOffset, heightTally, leftOffset + childView.getMeasuredWidth(), heightTally+childView.getMeasuredHeight());
-                heightTally += childView.getMeasuredHeight();
+                int yOffset = heightTally + layoutParams.paddingTop;
+                childView.layout(leftOffset, yOffset, leftOffset + childView.getMeasuredWidth(), yOffset+childView.getMeasuredHeight());
+                heightTally += layoutParams.paddingTop + childView.getMeasuredHeight();
 
                 pictureView = childView;
             }else if(layoutParams.isLayoutFrame) {
-                childView.layout(pictureView.getLeft(), pictureView.getTop(), pictureView.getRight(), pictureView.getBottom());
+
+                int frameLeft = (getMeasuredWidth() - childView.getMeasuredWidth())/2;
+                int frameRight = frameLeft + childView.getMeasuredWidth();
+                int yOffset = 0;
+
+                childView.layout(frameLeft, yOffset, frameRight, yOffset + childView.getMeasuredHeight());
+                frameView = childView;
+                frameViewParams = layoutParams;
 
             }else {
 

@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:src="@drawable/profile"
         profile:layout_picture="true"
+        profile:paddingTop="38dp"
         />
 
     <ImageView
@@ -19,6 +20,10 @@
         android:layout_width="match_parent"
         android:background="@drawable/frame"
         profile:layout_frame="true"
+        profile:paddingLeft="38dp"
+        profile:paddingTop="38dp"
+        profile:paddingRight="38dp"
+        profile:paddingBottom="38dp"
         />
 
     <ImageView
