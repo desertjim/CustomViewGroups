@@ -49,6 +49,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/banner"
         android:text="Jim Baca"
+        profile:framePlacement="bottom_center"
+        profile:paddingTop="30dp"
         android:textColor="@color/blue"
         />
 
