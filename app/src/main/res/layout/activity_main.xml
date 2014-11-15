@@ -61,6 +61,9 @@
         android:text="@string/jim_text"
         android:gravity="center"
         android:textColor="@color/blue"
+        android:paddingTop="55dp"
+        android:paddingBottom="55dp"
+        profile:layout_quoteHolder="true"
         />
 
     <View

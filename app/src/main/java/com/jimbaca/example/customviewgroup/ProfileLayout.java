@@ -31,6 +31,7 @@ public class ProfileLayout extends ViewGroup{
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int childCount = getChildCount();
         View pictureView = null;
+        View frameView = null;
         for(int i=0; i < childCount; i++){
             View childView = getChildAt(i);
             LayoutParams childParams = (LayoutParams)childView.getLayoutParams();
@@ -48,7 +49,12 @@ public class ProfileLayout extends ViewGroup{
                 int measureSpecHeight = MeasureSpec.makeMeasureSpec(frameHeight, MeasureSpec.EXACTLY);
 
                 measureChild(childView, measureSpecWidth, measureSpecHeight);
-                
+                frameView = childView;
+            }else if(childParams.isLayoutQuoteHolder){
+                int measureSpecWidth = MeasureSpec.makeMeasureSpec(frameView.getMeasuredWidth(), MeasureSpec.EXACTLY);
+                int measureSpecHeight = MeasureSpec.makeMeasureSpec(pictureView.getMeasuredHeight(), MeasureSpec.UNSPECIFIED);
+
+                childView.measure(measureSpecWidth, measureSpecHeight);
             }else{
                 measureChild(childView, widthMeasureSpec, heightMeasureSpec);
             }
@@ -85,6 +91,12 @@ public class ProfileLayout extends ViewGroup{
                 childView.layout(frameLeft, yOffset, frameRight, yOffset + childView.getMeasuredHeight());
                 frameView = childView;
                 frameViewParams = layoutParams;
+                heightTally += layoutParams.paddingBottom;
+            }else if(layoutParams.isLayoutQuoteHolder){
+
+                int quoteHolderTop = frameView.getBottom();
+                int quoteHolderLeft = (getMeasuredWidth() - childView.getMeasuredWidth())/2;
+                childView.layout(quoteHolderLeft, quoteHolderTop, quoteHolderLeft + childView.getMeasuredWidth(), quoteHolderTop + childView.getMeasuredHeight());
 
             }else if(LayoutParams.FramePlacement.TOP_LEFT == layoutParams.framePlacement){
 
@@ -143,6 +155,8 @@ public class ProfileLayout extends ViewGroup{
 
         public boolean isLayoutPicture = false;
         public boolean isLayoutFrame = false;
+        public boolean isLayoutQuoteHolder = false;
+
         public int paddingLeft = 0;
         public int paddingTop = 0;
         public int paddingRight = 0;
@@ -156,6 +170,8 @@ public class ProfileLayout extends ViewGroup{
 
             isLayoutPicture = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_picture, false);
             isLayoutFrame = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_frame, false);
+            isLayoutQuoteHolder = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_quoteHolder, false);
+
 
             paddingLeft = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingLeft, 0);
             paddingTop = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingTop, 0);
