@@ -13,7 +13,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.starter_layout);
+        setContentView(R.layout.activity_main);
         //ViewServer.get(this).addWindow(this);
     }
 
