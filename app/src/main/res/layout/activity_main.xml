@@ -6,6 +6,19 @@
     android:background="@drawable/bg"
     tools:context="com.jimbaca.example.customviewgroup.MainActivity">
 
+    <ImageView
+        android:layout_width="23dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chains"
+        profile:layout_chain="1"
+        />
+
+    <ImageView
+        android:layout_width="23dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chains"
+        profile:layout_chain="2"
+        />
 
     <ImageView
         android:layout_height="wrap_content"
@@ -66,16 +79,5 @@
         profile:layout_quoteHolder="true"
         />
 
-    <View
-        android:layout_width="23dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/chains"
-        />
-
-    <View
-        android:layout_width="23dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/chains"
-        />
 
 </com.jimbaca.example.customviewgroup.ProfileLayout>

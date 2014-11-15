@@ -32,6 +32,8 @@ public class ProfileLayout extends ViewGroup{
         int childCount = getChildCount();
         View pictureView = null;
         View frameView = null;
+        View quoteView = null;
+
         for(int i=0; i < childCount; i++){
             View childView = getChildAt(i);
             LayoutParams childParams = (LayoutParams)childView.getLayoutParams();
@@ -55,10 +57,35 @@ public class ProfileLayout extends ViewGroup{
                 int measureSpecHeight = MeasureSpec.makeMeasureSpec(pictureView.getMeasuredHeight(), MeasureSpec.UNSPECIFIED);
 
                 childView.measure(measureSpecWidth, measureSpecHeight);
+            }else if(childParams.chainIndex > 0) {
+                mChainViews.add(childView);
             }else{
+                quoteView = childView;
                 measureChild(childView, widthMeasureSpec, heightMeasureSpec);
             }
         }
+
+        // Now we handle the chain size they need to be drawn first(due to the drop shadows, but need to be measured last)
+        // this one method of handling it
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        final LayoutParams frameLayoutParams = (LayoutParams) frameView.getLayoutParams();
+        final LayoutParams quoteLayoutParams = (LayoutParams) quoteView.getLayoutParams();
+
+        // the chain height if from the picture frame to the start of the quote box
+        int chainHeight = frameLayoutParams.paddingBottom + quoteLayoutParams.paddingTop;
+
+        for(int i=0; i < mChainViews.size(); i++){
+            final View chain = mChainViews.get(i);
+            final LayoutParams chainParams = (LayoutParams)chain.getLayoutParams();
+            chainParams.paddingTop = pictureView.getMeasuredHeight() + frameLayoutParams.paddingTop;
+            chainParams.paddingLeft = (width - pictureView.getMeasuredWidth())/2;
+            if(i == 1){
+                chainParams.paddingLeft += pictureView.getMeasuredWidth() - chainParams.width;
+            }
+            chain.measure(MeasureSpec.makeMeasureSpec(chainParams.width, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(chainHeight, MeasureSpec.EXACTLY));
+        }
+
+        mChainViews.clear();
 
         // Note this size is being set by what is passed in, not what ProfileLayout is determining what it needs...
         setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.getSize(heightMeasureSpec));
@@ -75,11 +102,20 @@ public class ProfileLayout extends ViewGroup{
         for(int i=0; i < childCount; i++){
             View childView = getChildAt(i);
             LayoutParams layoutParams = (LayoutParams)childView.getLayoutParams();
-            if(layoutParams.isLayoutPicture){
+
+
+            if(layoutParams.chainIndex == 1){
+
+                childView.layout(layoutParams.paddingLeft,layoutParams.paddingTop,layoutParams.paddingLeft+childView.getMeasuredWidth(), layoutParams.paddingTop+childView.getMeasuredHeight());
+
+            }else if(layoutParams.chainIndex == 2){
+
+                childView.layout(layoutParams.paddingLeft,layoutParams.paddingTop,layoutParams.paddingLeft+childView.getMeasuredWidth(), layoutParams.paddingTop+childView.getMeasuredHeight());
+
+            }else if(layoutParams.isLayoutPicture){
                 int leftOffset = (getMeasuredWidth() - childView.getMeasuredWidth())/2;
                 int yOffset = heightTally + layoutParams.paddingTop;
                 childView.layout(leftOffset, yOffset, leftOffset + childView.getMeasuredWidth(), yOffset+childView.getMeasuredHeight());
-                heightTally += layoutParams.paddingTop + childView.getMeasuredHeight();
 
                 pictureView = childView;
             }else if(layoutParams.isLayoutFrame) {
@@ -91,7 +127,6 @@ public class ProfileLayout extends ViewGroup{
                 childView.layout(frameLeft, yOffset, frameRight, yOffset + childView.getMeasuredHeight());
                 frameView = childView;
                 frameViewParams = layoutParams;
-                heightTally += layoutParams.paddingBottom;
             }else if(layoutParams.isLayoutQuoteHolder){
 
                 int quoteHolderTop = frameView.getBottom();
@@ -121,7 +156,6 @@ public class ProfileLayout extends ViewGroup{
 
                 //Note that at this point you will likely notice something is wrong, what is it?  Hint measureChild doesn't always do what you want
                 childView.layout(0, heightTally, childView.getMeasuredWidth(), heightTally + childView.getMeasuredHeight());
-                heightTally += childView.getMeasuredHeight();
             }
         }
     }
@@ -162,6 +196,7 @@ public class ProfileLayout extends ViewGroup{
         public int paddingRight = 0;
         public int paddingBottom = 0;
         public int framePlacement = FramePlacement.NONE;
+        public int chainIndex = -1;
 
 
         public LayoutParams(Context c, AttributeSet attrs) {
@@ -172,6 +207,7 @@ public class ProfileLayout extends ViewGroup{
             isLayoutFrame = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_frame, false);
             isLayoutQuoteHolder = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_quoteHolder, false);
 
+            chainIndex = a.getInt(R.styleable.ProfileLayout_LayoutParams_layout_chain, -1);
 
             paddingLeft = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingLeft, 0);
             paddingTop = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingTop, 0);

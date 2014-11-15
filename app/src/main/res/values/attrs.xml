@@ -16,6 +16,7 @@
         <attr name="layout_picture" format="boolean" />
         <attr name="layout_frame" format="boolean" />
         <attr name="layout_quoteHolder" format="boolean" />
+        <attr name="layout_chain" format="integer" />
 
 
         <attr name="paddingLeft" format="dimension"/>
