@@ -92,6 +92,12 @@ public class ProfileLayout extends ViewGroup{
                 int frameTop = frameView.getTop()+layoutParams.paddingTop;
                 childView.layout(crownLeft, frameTop, crownLeft+childView.getMeasuredWidth(), frameTop + childView.getMeasuredHeight());
 
+            }else if(LayoutParams.FramePlacement.TOP_RIGHT == layoutParams.framePlacement) {
+
+                int frameLeft = frameView.getRight() - childView.getMeasuredWidth() - layoutParams.paddingRight;
+                int frameTop = frameView.getTop()+layoutParams.paddingTop;
+                childView.layout(frameLeft, frameTop, frameLeft+childView.getMeasuredWidth(), frameTop + childView.getMeasuredHeight());
+
             }else {
 
 

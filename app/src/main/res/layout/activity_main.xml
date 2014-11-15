@@ -39,6 +39,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/dragon"
+        profile:framePlacement="top_right"
+        profile:paddingTop="10dp"
+        profile:paddingRight="5dp"
        />
 
     <TextView
