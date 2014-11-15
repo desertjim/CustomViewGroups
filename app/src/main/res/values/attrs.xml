@@ -1,5 +1,18 @@
 <resources>
+
+
     <declare-styleable name="ProfileLayout_LayoutParams">
+
+        <attr name="framePlacement">
+            <enum name="none" value="-1" />
+            <enum name="top_left" value="0" />
+            <enum name="top_center" value="1" />
+            <enum name="top_right" value="2" />
+            <enum name="bottom_right" value="3" />
+            <enum name="bottom_center" value="4" />
+            <enum name="bottom_left" value="5" />
+        </attr>
+
         <attr name="layout_picture" format="boolean" />
         <attr name="layout_frame" format="boolean" />
         <attr name="paddingLeft" format="dimension"/>

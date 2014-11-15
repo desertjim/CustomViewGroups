@@ -129,6 +129,8 @@ public class ProfileLayout extends ViewGroup{
         public int paddingTop = 0;
         public int paddingRight = 0;
         public int paddingBottom = 0;
+        public int framePlacement = FramePlacement.NONE;
+
 
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
@@ -136,10 +138,13 @@ public class ProfileLayout extends ViewGroup{
 
             isLayoutPicture = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_picture, false);
             isLayoutFrame = a.getBoolean(R.styleable.ProfileLayout_LayoutParams_layout_frame, false);
+
             paddingLeft = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingLeft, 0);
             paddingTop = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingTop, 0);
             paddingRight = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingRight, 0);
             paddingBottom = a.getDimensionPixelSize(R.styleable.ProfileLayout_LayoutParams_paddingBottom, 0);
+
+            framePlacement = a.getInt(R.styleable.ProfileLayout_LayoutParams_framePlacement, FramePlacement.NONE);
 
             a.recycle();
         }
@@ -151,6 +156,17 @@ public class ProfileLayout extends ViewGroup{
 
         public LayoutParams(int width, int height) {
             super(width, height);
+        }
+
+
+        public static class FramePlacement{
+            public static int NONE = -1;
+            public static int TOP_LEFT = 0;
+            public static int TOP_CENTER = 1;
+            public static int TOP_RIGHT = 2;
+            public static int BOTTOM_RIGHT = 3;
+            public static int BOTTOM_CENTER = 4;
+            public static int BOTTOM_LEFT = 5;
         }
 
     }
