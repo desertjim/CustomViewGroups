@@ -2,7 +2,7 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 14
-    buildToolsVersion '19.0.0'
+    buildToolsVersion '21.0.1'
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 14
@@ -27,6 +27,5 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:+'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
