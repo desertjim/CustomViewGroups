@@ -20,6 +20,7 @@
         profile:layout_chain="2"
         />
 
+
     <ImageView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
@@ -78,6 +79,5 @@
         android:paddingBottom="55dp"
         profile:layout_quoteHolder="true"
         />
-
 
 </com.jimbaca.example.customviewgroup.ProfileLayout>
